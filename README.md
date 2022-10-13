@@ -1,2 +1,2 @@
-# M8SZT8
+# CyperSec-8M8
 scripts,mind-maps,cheat sheets
