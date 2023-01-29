@@ -1,1 +1,1 @@
-# Mind Mapsfor everything
+# Mind Maps for everything
