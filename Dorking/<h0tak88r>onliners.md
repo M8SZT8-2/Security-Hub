@@ -1,8 +1,4 @@
-<aside>
-<img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/863852bf-ce40-4e73-99a3-f9e382f24e62/h0tak88r.jpeg" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/863852bf-ce40-4e73-99a3-f9e382f24e62/h0tak88r.jpeg" width="40px" /> **BY: h0tak88r**
-
-</aside>
-
+# BY: h0tak88r
 # CVE’s
 
 ## #Nuclie
